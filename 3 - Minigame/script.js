@@ -1,11 +1,11 @@
-
 // Constants
 let playBtn = document.querySelector(".playBtn");
 let gameOverMenu = document.querySelector(".game-over-menu");
 let healthBar = document.querySelector(".health-bar");
 let healthValue = document.querySelector(".health-value");
 let roundText = document.querySelector('.round');
-
+let roundsSurvived = document.querySelector('.rounds-survived');
+roundsSurvived.textContent = 'Rounds survived: 0';
 //
 let scoreBoard = document.querySelector('.score');
 //
@@ -20,11 +20,11 @@ let score = 0;
 let clickSound = new Audio("sounds/click.mp3");
 let song = new Audio("sounds/song1.mp3");
 
-
 // Functionality
 playBtn.addEventListener("click", function() {
     health = 100;
     round = 0;
+    roundsSurvived.textContent = 'Rounds survived: 0';
     gameOverMenu.classList.add("hidden");
     healthBar.style.display = "block";
     healthValue.innerHTML = `${health} HP`;
@@ -111,6 +111,7 @@ function startRound() {
                     healthBar.style.display = "none";
                     healthValue.classList.remove("visible");
                     roundText.classList.remove("visible");
+                    roundsSurvived.textContent = "Rounds survived: " + round;
                     clearInterval(intervalId);
                     song.pause();
                 }
